@@ -75,8 +75,9 @@ public class DoctorServiceImpl implements DoctorService{
         Optional<Doctor> doctorFromDb = doctorRepository.findById(doctorId);
         Doctor doctorToBeUpdated = doctorFromDb.get();
         doctorToBeUpdated.setAddress(address);
+        doctorRepository.save(doctorToBeUpdated);
 
-        return null;
+        return doctorToBeUpdated;
     }
 
     @Override
