@@ -76,7 +76,6 @@ public class DoctorServiceImpl implements DoctorService{
         Doctor doctorToBeUpdated = doctorFromDb.get();
         doctorToBeUpdated.setAddress(address);
         doctorRepository.save(doctorToBeUpdated);
-
         return doctorToBeUpdated;
     }
 
