@@ -25,13 +25,13 @@ public class DoctorServiceImpl implements DoctorService{
     @Override
     public  DoctorResponseDto registerNewDoctor(SignUpDoctorRequest signUpDoctorRequest) throws DoctorAlreadyExistException {
         if(signUpDoctorRequest==null){
-            throw new IllegalArgumentException("field can not be null");
+            throw new  IllegalArgumentException("field can not be null");
         }
         if(doctorRepository.existsByEmail(signUpDoctorRequest.getEmail())){
             throw new DoctorAlreadyExistException("doctor with this email already exist");
         }
         Doctor newDoctor = Doctor.builder()
-                                 .address(signUpDoctorRequest.getAddress())
+                                 .addressId(signUpDoctorRequest.getAddress())
                                  .email(signUpDoctorRequest.getEmail())
                                  .firstName(signUpDoctorRequest.getFirstName())
                                  .lastName(signUpDoctorRequest.getLastName())
@@ -39,7 +39,7 @@ public class DoctorServiceImpl implements DoctorService{
                                  .build();
            Doctor savedDoctor = doctorRepository.save(newDoctor);
         DoctorResponseDto doctorResponseDto = new DoctorResponseDto();
-        doctorResponseDto.setAddress(savedDoctor.getAddress());
+        doctorResponseDto.setAddress(savedDoctor.getAddressId());
         doctorResponseDto.setFirstName(savedDoctor.getFirstName());
         doctorResponseDto.setPhoneNumber(savedDoctor.getPhoneNumber());
         doctorResponseDto.setLastName(savedDoctor.getLastName());
@@ -74,7 +74,8 @@ public class DoctorServiceImpl implements DoctorService{
         }
         Optional<Doctor> doctorFromDb = doctorRepository.findById(doctorId);
         Doctor doctorToBeUpdated = doctorFromDb.get();
-        doctorToBeUpdated.setAddress(address);
+       // doctorToBeUpdated.setAddressId(address);
+        doctorToBeUpdated.setAddressId(address);
         doctorRepository.save(doctorToBeUpdated);
         return doctorToBeUpdated;
     }

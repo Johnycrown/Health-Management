@@ -23,7 +23,7 @@ public class Doctor {
     private  String email;
     @Column(unique = true)
     private String phoneNumber;
-   // private Long addressId;
-    @OneToOne(mappedBy = "address")
-    private Address address;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Address addressId;
+  //  private Long addressId;
 }

@@ -14,7 +14,7 @@ public interface DoctorService {
     DoctorResponseDto registerNewDoctor(SignUpDoctorRequest signUpDoctorRequest) throws DoctorAlreadyExistException;
     Optional<List<Doctor>> findAllDoctor();
     Doctor findDoctorById(Long doctorId) throws DoctorNotFoundExeption;
-              Doctor updateDoctorAddress(Long doctorId, Address address) throws DoctorNotFoundExeption;
+              Doctor updateDoctorAddress(Long doctorI, Address addressId) throws DoctorNotFoundExeption;
               String removeDoctor(Long doctorId) throws DoctorNotFoundExeption;
 
 }
