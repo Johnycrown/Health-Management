@@ -85,7 +85,7 @@ public class DoctorServiceImpl implements DoctorService{
         if(doctorId==null) throw new IllegalArgumentException("the doctor Id is required");
         Optional<Doctor> doctorFromDb = doctorRepository.findById(doctorId);
         if(doctorFromDb.isEmpty()) throw new DoctorNotFoundExeption("Doctor with the ID " + doctorId + " does not exist");
-        doctorRepository.existsById(doctorId);
+        doctorRepository.delete(doctorFromDb.get());
         return "doctor with the id " + doctorId + " has been successfully delleted";
     }
 }
